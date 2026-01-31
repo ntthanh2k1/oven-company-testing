@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { WebhookService } from './webhook.service';
 import { CreateWebhookDto } from './dto/create-webhook.dto';
@@ -29,17 +30,19 @@ export class WebhookController {
     return await this.webhookService.getAll();
   }
 
-  @Get(':id')
-  async getById(@Param('id') id: string): Promise<{ data: Webhook | null }> {
-    return await this.webhookService.getById(id);
-  }
-
   @Get('count')
   async count(): Promise<{ totalWebhooks: number }> {
     return await this.webhookService.count();
   }
 
-  @Delete(':id')
+  @Get(':id')
+  async getById(
+    @Param('id', new ParseUUIDPipe()) id: string,
+  ): Promise<{ data: Webhook | null }> {
+    return await this.webhookService.getById(id);
+  }
+
+  @Delete()
   async clear(): Promise<{ message: string }> {
     return await this.webhookService.clear();
   }

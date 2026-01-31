@@ -20,7 +20,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       database,
       entities: [],
       synchronize: false,
-      autoLoadEntities: false,
+      autoLoadEntities: true,
     };
   }
 }

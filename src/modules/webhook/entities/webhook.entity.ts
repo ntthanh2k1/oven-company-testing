@@ -16,8 +16,8 @@ export class Webhook {
   @Column({ type: 'varchar', length: 256 })
   event: string;
 
-  @Column({ type: 'varchar' })
-  payload: any;
+  @Column({ type: 'jsonb' })
+  payload: Record<string, any>;
 
   @CreateDateColumn()
   receivedAt: Date;

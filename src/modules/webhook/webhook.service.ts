@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateWebhookDto } from './dto/create-webhook.dto';
 import {
   IWebhookRepository,
@@ -34,6 +34,10 @@ export class WebhookService {
 
   async getById(id: string): Promise<{ data: Webhook | null }> {
     const webhook = await this.webhookRepository.getById(id);
+
+    if (!webhook) {
+      throw new NotFoundException('Webhook not found.');
+    }
 
     return {
       data: webhook,
