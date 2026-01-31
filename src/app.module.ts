@@ -14,7 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    // Cấu hình rate limit 50 request trong 1 phút
+    // Cấu hình rate limit giới hạn 50 request trong 1 phút
     ThrottlerModule.forRoot({
       throttlers: [
         {

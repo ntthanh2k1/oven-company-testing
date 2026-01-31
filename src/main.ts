@@ -33,7 +33,7 @@ async function bootstrap() {
 
   // Cấu hình đọc cookie từ request
   app.use(cookieParser());
-  // Cấu hình bắt lỗi
+  // Cấu hình error handler global
   app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(port, () => {
