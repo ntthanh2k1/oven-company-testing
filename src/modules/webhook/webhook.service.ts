@@ -19,7 +19,7 @@ export class WebhookService {
     const newWebhook = await this.webhookRepository.save(createWebhookDto);
 
     return {
-      message: 'Webhook created successfully',
+      message: 'Create webhook successfully.',
       data: newWebhook,
     };
   }
