@@ -11,7 +11,58 @@ node: 22.16.0\
 npm: 10.9.2\
 nest: 11.0.7
 
-### 1.2. Các bước cài đặt project
+### 1.2. Cài đặt project trên Docker:
+
+Lợi ích khi chạy project trên Docker so với local là giúp đồng nhất môi trường, phiên bản, các dependencies, thậm chí trên máy local không cài môi trường node vẫn có thể chạy được bình thường vì mọi setup đã được đóng gói trong containner.
+
+#### Bước 1:
+
+Clone code từ Github:
+
+```bash
+$ git clone https://github.com/ntthanh2k1/oven-company-testing.git
+```
+
+#### Bước 2:
+
+Tạo file ".env" ở root project:
+
+```bash
+# .env
+PORT=3000
+
+NODE_ENV=development
+
+# DB_HOST đặt là 'db'
+DB_HOST=db
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=123456
+DB_NAME=webhook_db
+
+# ACCESS_TOKEN_SECRET được tạo thành từ:
+# Input: 'this-is-my-access-token-secret-key'
+# Thuật toán hash: SHA512
+# Đường dẫn hash key: https://codebeautify.org/sha512-hash-generator
+ACCESS_TOKEN_SECRET=ebec88744d37773f0c8e6609c672681dec1492503ed9fef3a7f9610a070e4dd384b0ea1008ab7a60b1c3a1c945b41e66fd9a06dc5d4557138dd28a8123e38e5a
+ACCESS_TOKEN_TTL=86400
+```
+
+#### Bước 3:
+
+Chạy lệnh build và run:
+
+```bash
+docker compose up --build
+```
+
+Sau khi build mà chưa run có thể chạy lại:
+
+```bash
+docker compose up
+```
+
+### 1.3. Các bước cài đặt project trên local
 
 #### Bước 1:
 
@@ -35,11 +86,12 @@ $ git clone https://github.com/ntthanh2k1/oven-company-testing.git
 Tạo file ".env" ở root project:
 
 ```bash
-# oven-company-testing/.env
+# .env
 PORT=3000
 
 NODE_ENV=development
 
+# DB_HOST đặt là 'localhost'
 DB_HOST=localhost
 DB_PORT=5432
 DB_USERNAME=postgres
